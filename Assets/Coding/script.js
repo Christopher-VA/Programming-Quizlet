@@ -3,18 +3,11 @@ var buttonFirst = $("#btn");
 var timeEl = $("#timer");
 var secondsLeft = 100;
 var questionNumberIndex = 0;
-var questionABC = [
-"Which JS code is used for calling an event?", 
-"How do you make variables using Javascript?", 
-"What type of variable is this: True", 
-"Which symbole is used for Jquery"
-];
 var questionContainer = $('#question-container');
-var answerOptions = [];
-var nextButton = document.querySelector('.next-button');
 var scoreContainer = $('#score-container');
 var saveButton = document.querySelector('#save')
 var finalScore = 0;
+var userName = document.getElementById('#msg');
 questionContainer.hide();
 scoreContainer.hide();
 
@@ -59,24 +52,24 @@ var quizGame = function() {
             correctAnswer: 2
         },
         {
-            question: "How do you make variables using Javascript?",
+            question: "What type of variable is this: True",
             options: {
-                0: 'function',
-                1: 'if',
-                2: 'var',
-                3: 'for'
+                0: 'number',
+                1: 'boolean',
+                2: 'string',
+                3: 'array'
             },
-            correctAnswer: 2
+            correctAnswer: 1
         },
         {
-            question: "How do you make variables using Javascript?",
+            question: "Which symbole is used for Jquery",
             options: {
-                0: 'function',
-                1: 'if',
-                2: 'var',
-                3: 'for'
+                0: '$',
+                1: '#',
+                2: '*',
+                3: '%'
             },
-            correctAnswer: 2
+            correctAnswer: 0
         }
     ]
 
@@ -110,18 +103,6 @@ var loadQuestion = function() {
 
 }
 
-var endGame = function() {
-    questionContainer.hide();
-    scoreContainer.show();
-    var timeLeft = $('#time-left');
-    finalScore = secondsLeft
-
-    timeLeft.text(finalScore);
-    timeEl.remove();
-
-    // localStorage.setItem('timeLeft', JSON.stringify(timeLeft));
-}
-
 function checkAnswer(e){
     var target = e.target;
     
@@ -145,7 +126,25 @@ function checkAnswer(e){
     loadQuestion();
 }
 
-// window.location = 'highscore.html'
+var endGame = function() {
+    questionContainer.hide();
+    scoreContainer.show();
+    var timeLeft = $('#time-left');
+    finalScore = secondsLeft
+
+    timeLeft.text(finalScore);
+    timeEl.remove();
+}
+
+var userArry = [finalScore, userName];
+
+function storeScore() {
+    localStorage.setItem('user', JSON.stringify(userArry));
+    window.location.href = 'highscore.html';
+    console.log(userArry);
+}
+
+saveButton.addEventListener('click', storeScore);
 
 opt.addEventListener('click', checkAnswer)
 
