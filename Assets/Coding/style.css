@@ -1,0 +1,30 @@
+header {
+    display: flex;
+    margin: 0;
+}
+
+#highscores {
+    flex: 0 0 50%;
+}
+
+#timer {
+    flex: 0 0 50%;
+    text-align: end;
+}
+
+#question-container {
+    text-align: center;
+}
+
+#score-container {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+ul li button {
+    margin-left: 5px;
+}
